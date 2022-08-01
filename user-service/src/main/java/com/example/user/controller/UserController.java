@@ -38,9 +38,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    //@CircuitBreaker(name= USER_SERVICE_CIRCUIT, fallbackMethod = "getUserWithDepartmentFallback")
+    @CircuitBreaker(name= USER_SERVICE_CIRCUIT, fallbackMethod = "getUserWithDepartmentFallback")
     //@Retry(name = USER_SERVICE_RETRY, fallbackMethod = "getUserWithDepartmentFallback")
-    @RateLimiter(name = USER_SERVICE)
+    //@RateLimiter(name = USER_SERVICE)
     public ResponseTemplateVO getUserWithDepartment(@PathVariable("id") Long userId){
         log.info("Inside getUserWithDepartment of UserController");
         return userService.getUserWithDepartment(userId);
